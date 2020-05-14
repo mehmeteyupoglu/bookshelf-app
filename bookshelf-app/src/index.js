@@ -8,15 +8,16 @@ import "./App.css"
 import {BrowserRouter} from "react-router-dom"
 import store from "./state/store"
 import {Provider} from "react-redux"
+import history from "./history"
 
 ReactDOM.render(
     
     <React.StrictMode>
-    <BrowserRouter>
     <Provider store={store}>
+    <BrowserRouter history={history}>
         <App/>
-    </Provider>
     </BrowserRouter>   
+    </Provider>
     </React.StrictMode>, 
     document.getElementById("root")
 ); 

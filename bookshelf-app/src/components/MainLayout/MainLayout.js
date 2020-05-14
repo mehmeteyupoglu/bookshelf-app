@@ -19,7 +19,7 @@ class MainLayout extends Component {
         const Children = this.props.children
         return (
             <div>
-            <Container><Children/></Container>
+            <Container><Children routerProps = {this.props.routerProps}/></Container>
                 
             </div>
         );

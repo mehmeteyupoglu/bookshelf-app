@@ -16,6 +16,11 @@ class Homepage extends Component {
         this.props.getBook()
     }
     render() {
+        if (this.props.loading){
+            return (
+                <h3>Books are loading...</h3>
+            )
+        }
         return (
             <div>
                 <h3>HomePage</h3>
@@ -27,7 +32,8 @@ class Homepage extends Component {
 
 const mapStateToProps = state => {
     return {
-        books: state.books.data
+        books: state.books.data,
+        loading: state.books.loading
     }
 }
 

@@ -5,7 +5,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";  
 import {categories, ratings, status} from "../../constants"
 import {addBook} from "../../state/ducks/books/actions"
-
+import { withRouter } from "react-router-dom"
 
 const validationSchema = Yup.object().shape({
     title: Yup.string().required('Title is a required field'),
@@ -28,7 +28,7 @@ const AddBookForm = (props) => {
             validationSchema={validationSchema}
 
             onSubmit={(values) => {
-                props.addBook(values)
+                props.addBook(values, props.history)
       }}
             >
 
@@ -151,4 +151,4 @@ const mapDispatchToProps = {
     addBook
 }
 
-export default connect(null, mapDispatchToProps)(AddBookForm);
+export default withRouter(connect(null, mapDispatchToProps)(AddBookForm));
