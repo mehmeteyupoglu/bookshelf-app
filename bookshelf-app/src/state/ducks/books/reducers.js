@@ -1,7 +1,7 @@
 import * as Actions from "./types"
 
 const initialState = {
-    books: []
+    data: []
 }
 
 const bookReducer = (state = initialState, action) => {
@@ -9,7 +9,12 @@ const bookReducer = (state = initialState, action) => {
         case Actions.ADD_BOOKS: 
             return {
                 ...state, 
-                books : [...state.books, action.payload]
+                data : [...state.data, action.payload]
+            }
+        case Actions.SET_BOOKS: 
+            return {
+                ...state, 
+                data : action.payload
             }
         default: 
             return state

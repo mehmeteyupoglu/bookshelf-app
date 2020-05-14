@@ -1,10 +1,18 @@
 import React from 'react';
 import { connect } from "react-redux"
-import { Button, FormGroup, Form, Label, Input, FormText } from 'reactstrap';
+import { Button, FormGroup, Form, Label, Input, FormFeedback } from 'reactstrap';
 import { Formik } from "formik"; 
+import * as Yup from "yup";  
 import {categories, ratings, status} from "../../constants"
 import {addBook} from "../../state/ducks/books/actions"
-const AddBookForm = (props) => {
+
+
+const validationSchema = Yup.object().shape({
+    title: Yup.string().required('Title is a required field'),
+    author: Yup.string().required('Author is a required field')
+})
+
+const AddBookForm = (props) => {    
     return (
         <div>
             <Formik
@@ -17,9 +25,10 @@ const AddBookForm = (props) => {
                 description: "", 
                 status : ""
             }}
+            validationSchema={validationSchema}
 
             onSubmit={(values) => {
-                props.addBook()
+                props.addBook(values)
       }}
             >
 
@@ -43,7 +52,11 @@ const AddBookForm = (props) => {
                     id="title" 
                     placeholder="Name of the Book"
                     values={values.title}
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                    invalid={errors.title} />
+                    {
+                        errors.title && <FormFeedback>Oh noes! that name is already taken</FormFeedback>
+                    }
                 </FormGroup>
                 <FormGroup>
                     <Label for="author">Author</Label>
@@ -53,7 +66,12 @@ const AddBookForm = (props) => {
                     id="author" 
                     placeholder="Author of the Book"
                     values={values.author}
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                    invalid={errors.author} />
+                    {
+                        errors.author && <FormFeedback>Oh noes! that name is already taken</FormFeedback>
+                    }
+                     
                 </FormGroup>
                 <FormGroup>
                     <Label for="image">Image URL</Label>
@@ -132,4 +150,5 @@ const AddBookForm = (props) => {
 const mapDispatchToProps = {
     addBook
 }
+
 export default connect(null, mapDispatchToProps)(AddBookForm);

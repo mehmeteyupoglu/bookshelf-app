@@ -16,11 +16,10 @@ class MainLayout extends Component {
     }
     
     render() {
+        const Children = this.props.children
         return (
             <div>
-            <Container>
-                {this.props.children()}
-            </Container>
+            <Container><Children/></Container>
                 
             </div>
         );
