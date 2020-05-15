@@ -1,8 +1,10 @@
 import * as Actions from "./types"
+import { act } from "react-dom/test-utils"
 
 const initialState = {
     data: [], 
-    loading: false
+    loading: false, 
+    filter: ""
 }
 
 const bookReducer = (state = initialState, action) => {
@@ -22,6 +24,11 @@ const bookReducer = (state = initialState, action) => {
             return {
                 ...state, 
                  loading: true
+            }
+        case Actions.SET_FILTER: 
+            return {
+                ...state, 
+                filter : action.payload
             }
         default: 
             return state

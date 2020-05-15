@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Container } from "reactstrap"
 
 class MainLayout extends Component {
     constructor(props) {
@@ -19,8 +18,7 @@ class MainLayout extends Component {
         const Children = this.props.children
         return (
             <div>
-            <Container><Children routerProps = {this.props.routerProps}/></Container>
-                
+            <Children routerProps = {this.props.routerProps}/>   
             </div>
         );
     }

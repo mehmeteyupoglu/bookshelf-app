@@ -1,14 +1,21 @@
 import React from 'react'
+import Book from "./Book"
+import { Row, Col } from 'reactstrap'
 
 function Books(props) {
     return (
-        <ul>
+        <Row>
             {
                 props.books.map(item => {
-                    return <li key = {item.id}>{item.title}</li>
+                    return (
+                        <Col xs={3}>
+                            <Book {...item} />
+                        </Col>
+                    )
+                    
                 })
             }
-        </ul>
+        </Row>
     )
 }
 

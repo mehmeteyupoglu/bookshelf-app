@@ -20,10 +20,10 @@ const AddBookForm = (props) => {
                 title : "", 
                 author: "", 
                 categories: "", 
-                rating: "", 
-                imageUrl: "", 
+                rating: 1, 
+                image: "", 
                 description: "", 
-                status : ""
+                status : "not read"
             }}
             validationSchema={validationSchema}
 
@@ -80,7 +80,7 @@ const AddBookForm = (props) => {
                     name="image" 
                     id="image" 
                     placeholder="Image of the Book"
-                    values={values.imageUrl}
+                    values={values.image}
                     onChange={handleChange} />
                 </FormGroup>
                 <FormGroup>

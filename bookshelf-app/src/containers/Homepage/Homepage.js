@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux"
-import {Books} from  "../../components"
+import {Container} from "reactstrap"
+import {Books, FilterSortBar} from  "../../components"
 import { getBook } from "../../state/ducks/books/actions"
 
 class Homepage extends Component {
@@ -23,8 +24,11 @@ class Homepage extends Component {
         }
         return (
             <div>
-                <h3>HomePage</h3>
-                <Books books={this.props.books}/>
+                <FilterSortBar/>
+                <Container>
+                    <Books books={this.props.books}/>
+                </Container>
+                
             </div>
         )
     }
