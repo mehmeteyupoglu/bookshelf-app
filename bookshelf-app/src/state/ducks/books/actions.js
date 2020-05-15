@@ -32,3 +32,9 @@ export const setFilter = (filter) => {
         dispatch({type: Actions.SET_FILTER, payload: filter})
     }
 }
+
+export const searchBooks = (searchTerm) => {
+    return dispatch => {
+        dispatch({type: Actions.SEARCH_BOOKS, payload: searchTerm})
+    }
+}

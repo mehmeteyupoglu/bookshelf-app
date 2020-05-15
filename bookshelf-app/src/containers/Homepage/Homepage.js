@@ -14,21 +14,47 @@ class Homepage extends Component {
     }
     
     componentDidMount () {
-        this.props.getBook()
+        this.props.getBook()       
     }
     render() {
+        console.log(this.props)
+
+        const allBooks = this.props.books
+        let filteredBooks = []
+        
+        if (this.props.filter) {
+            filteredBooks = allBooks.filter(book => {
+                return book.categories === this.props.filter })
+        } else {
+                filteredBooks = allBooks
+            }
+        
+        if(this.props.searchTerm) {
+            filteredBooks = filteredBooks.filter(book => {
+                return book.title.toLowerCase().indexOf(this.props.searchTerm.toLowerCase()) > -1 
+            })
+        }
+            
+            
         if (this.props.loading){
             return (
                 <h3>Books are loading...</h3>
             )
         }
+
+        let Book = ""
+        if(filteredBooks.length < 1) {
+            Book = <h2>No Books Here</h2>
+        } else {
+            Book = <Books books={filteredBooks}/>
+        }
+        
         return (
             <div>
                 <FilterSortBar/>
                 <Container>
-                    <Books books={this.props.books}/>
-                </Container>
-                
+                    {Book}
+                </Container>  
             </div>
         )
     }
@@ -37,7 +63,9 @@ class Homepage extends Component {
 const mapStateToProps = state => {
     return {
         books: state.books.data,
-        loading: state.books.loading
+        loading: state.books.loading, 
+        filter : state.books.filter,
+        searchTerm : state.books.searchTerm
     }
 }
 

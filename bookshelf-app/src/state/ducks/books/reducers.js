@@ -4,7 +4,8 @@ import { act } from "react-dom/test-utils"
 const initialState = {
     data: [], 
     loading: false, 
-    filter: ""
+    filter: "", 
+    searchTerm: ""
 }
 
 const bookReducer = (state = initialState, action) => {
@@ -29,6 +30,11 @@ const bookReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 filter : action.payload
+            }
+        case Actions.SEARCH_BOOKS: 
+            return {
+                ...state, 
+                searchTerm : action.payload
             }
         default: 
             return state
