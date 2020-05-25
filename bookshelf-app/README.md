@@ -17,3 +17,4 @@ Clone this repo to your local machine using https://github.com/mehmeteyupoglu/bo
 $ cd bookshelf-app
 $ yarn start 
 ````
+# THIS PROJECT WILL BE DEPLOYED SOON!
